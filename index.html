@@ -51,8 +51,8 @@
   .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
   section{padding:64px 0;position:relative;z-index:1}
 
-  /* ===== Decorative page background (bg.png) ===== */
-  /* bg.png は四隅に創作アイコン＋中央余白。
+  /* ===== Decorative page background (bg.jpg) ===== */
+  /* bg.jpg は四隅に創作アイコン＋中央余白。
      固定背景として淡く敷き、白オーバーレイで可読性を最優先に確保する。 */
   .page-bg{
     position:fixed;inset:0;z-index:-2;
@@ -68,9 +68,8 @@
     background:radial-gradient(120% 90% at 50% 45%, rgba(255,253,251,.92) 0%, rgba(255,253,251,.7) 45%, rgba(255,253,251,.45) 100%);
   }
 
-  /* ===== Hero (overlay type / 実装A) ===== */
-  /* hero.png を大きく主役に敷き、人物（左）はそのままに、
-     右側の余白へテキストを重ねる。テキスト側に白スクリムで可読性を確保。 */
+  /* ===== Hero (2カラム) ===== */
+  /* 左に hero.jpg の人物イラストを大きく、右にテキスト。768px以下で縦積み。 */
   .hero{
     padding:32px 0 44px;
   }
@@ -82,7 +81,7 @@
     gap:40px;
     animation:rise .8s ease both;
   }
-  /* hero.png は人物が中央寄り。左右の余白をトリミングして人物を大きく見せる */
+  /* hero.jpg は人物が中央寄り。左右の余白をトリミングして人物を大きく見せる */
   .hero-photo{
     width:100%;
     aspect-ratio:5/4;
@@ -133,6 +132,10 @@
     font-size:.95rem;text-decoration:none;padding:10px 4px;border-bottom:2px solid transparent;transition:border-color .15s ease,color .15s ease;
   }
   .cta-ghost:hover{color:var(--ink);border-bottom-color:var(--mint)}
+  /* キーボードフォーカスの可視化 (WCAG 2.4.7) */
+  a:focus-visible,.cta:focus-visible,.cta-ghost:focus-visible,.card-link:focus-visible,.social:focus-visible{
+    outline:3px solid var(--accent);outline-offset:2px;border-radius:8px;
+  }
 
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -161,7 +164,7 @@
     transition:transform .18s ease, box-shadow .18s ease;display:flex;flex-direction:column;
   }
   .card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(171,219,216,.32)}
-  .thumb{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:#fff;font-family:"Quicksand";font-weight:700}
+  .thumb{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--ink);font-family:"Quicksand";font-weight:700}
   .t1{background:linear-gradient(135deg,var(--mint),#cfeeec)}
   .t2{background:linear-gradient(135deg,var(--pink),#fce6f1)}
   .t3{background:linear-gradient(135deg,var(--peach),#f9d8bd)}
@@ -231,8 +234,11 @@
     <div class="wrap">
       <div class="hero-banner">
         <div class="hero-photo">
-          <img src="images/hero.jpg" width="2560" height="1706"
-               loading="eager" decoding="async"
+          <img src="images/hero-1280.jpg"
+               srcset="images/hero-1280.jpg 1280w, images/hero.jpg 2560w"
+               sizes="(max-width:768px) 92vw, 480px"
+               width="1280" height="853"
+               loading="eager" decoding="async" fetchpriority="high"
                alt="机に向かってタブレットでイラストを描く、ちいさなクリエイターのキャラクター。まわりにノートパソコンやカメラ、画材のアイコンが浮かんでいる。">
         </div>
         <div class="hero-text">
