@@ -1,0 +1,5 @@
+.env
+*.key
+*.secret
+.git
+.DS_Store

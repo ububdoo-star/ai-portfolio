@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Portfolio — ちいさなロボと、つくる毎日。</title>
+<title>AI Portfolio — ちいさなクリエイターの、つくる毎日。</title>
 <meta name="description" content="AIで作ったアプリ・ツールの実績をまとめた個人開発ポートフォリオ。Claude CodeをはじめとするAIと一緒にものづくりをしています。">
 <meta name="theme-color" content="#ABDBD8">
 <!-- OGP -->
@@ -28,9 +28,10 @@
     --mint:#ABDBD8;
     --pink:#F6D7E8;
     --peach:#F2BD93;
+    --accent:#B0591F;
     --lilac:#c5c1ec;
     --ink:#4A4A5C;
-    --ink-soft:#7a7a88;
+    --ink-soft:#6a6a78;
     --card:#ffffff;
     --radius:22px;
     --shadow:0 8px 24px rgba(171,219,216,.20);
@@ -118,11 +119,11 @@
     font-size:1.05rem;color:var(--ink-soft);max-width:460px;
     animation:rise .7s ease .16s both;
   }
-  .num{color:var(--peach);font-weight:700;font-family:"Quicksand"}
+  .num{color:var(--accent);font-weight:700;font-family:"Quicksand"}
   .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:rise .7s ease .24s both}
   .cta{
     display:inline-flex;align-items:center;gap:8px;
-    background:var(--peach);color:#fff;font-weight:700;font-size:1rem;
+    background:var(--peach);color:var(--ink);font-weight:700;font-size:1rem;
     padding:14px 34px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;
     box-shadow:0 8px 18px rgba(242,189,147,.45);transition:transform .15s ease, box-shadow .15s ease;
   }
@@ -170,7 +171,7 @@
   .card-body p{font-size:.9rem;color:var(--ink-soft);margin-bottom:12px}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
   .tag{font-size:.72rem;font-weight:700;background:#f4f4f8;color:var(--ink-soft);padding:4px 10px;border-radius:999px}
-  .card-link{font-size:.85rem;font-weight:700;color:var(--peach);text-decoration:none}
+  .card-link{font-size:.85rem;font-weight:700;color:var(--accent);text-decoration:none}
   .card-link:hover{text-decoration:underline}
 
   /* ===== Skills ===== */
@@ -235,9 +236,9 @@
                alt="机に向かってタブレットでイラストを描く、ちいさなクリエイターのキャラクター。まわりにノートパソコンやカメラ、画材のアイコンが浮かんでいる。">
         </div>
         <div class="hero-text">
-          <span class="badge">🎨 AI開発ポートフォリオ</span>
+          <span class="badge"><span aria-hidden="true">🎨</span> AI開発ポートフォリオ</span>
           <h1><span class="hl">ちいさなクリエイターの、</span><br>つくる毎日。</h1>
-          <p class="lead">AIと一緒に、アプリやツールを <span class="num">6</span> 個つくりました。<br>「あったらいいな」を、ぽちぽちかたちにしています🌱</p>
+          <p class="lead">AIと一緒に、アプリやツールを <span class="num">6</span> 個つくりました。<br>「あったらいいな」を、ぽちぽちかたちにしています<span aria-hidden="true">🌱</span></p>
           <div class="hero-actions">
             <a href="#gallery" class="cta">作品を見る →</a>
             <a href="#about" class="cta-ghost">わたしについて</a>
@@ -250,11 +251,11 @@
   <!-- ===== ABOUT ===== -->
   <section id="about">
     <div class="wrap">
-      <div class="sec-head"><h2>🌷 About</h2><span class="sub">about me</span></div>
+      <div class="sec-head"><h2><span aria-hidden="true">🌷</span> About</h2><span class="sub" lang="en">about me</span></div>
       <div class="about-bubble">
         <p>はじめまして、AIと一緒にものづくりをしている個人開発者です。<br>
         「あったらいいな」を、AIの力でかたちにするのが好き。<br>
-        小さなアプリから少しずつ、できることを増やしています🌱</p>
+        小さなアプリから少しずつ、できることを増やしています<span aria-hidden="true">🌱</span></p>
       </div>
     </div>
   </section>
@@ -262,7 +263,7 @@
   <!-- ===== GALLERY ===== -->
   <section id="gallery">
     <div class="wrap">
-      <div class="sec-head"><h2>🖼️ Gallery</h2><span class="sub">my works</span></div>
+      <div class="sec-head"><h2><span aria-hidden="true">🖼️</span> Gallery</h2><span class="sub" lang="en">my works</span></div>
       <div class="grid">
 
         <article class="card">
@@ -332,7 +333,7 @@
   <!-- ===== SKILLS ===== -->
   <section id="skills">
     <div class="wrap">
-      <div class="sec-head"><h2>🛠️ Skills</h2><span class="sub">tools i use</span></div>
+      <div class="sec-head"><h2><span aria-hidden="true">🛠️</span> Skills</h2><span class="sub" lang="en">tools i use</span></div>
       <div class="skills">
         <span class="skill">Claude Code</span>
         <span class="skill">Python</span>
@@ -347,11 +348,11 @@
 
   <!-- ===== FOOTER ===== -->
   <footer id="contact">
-    <h2>おしごとのご相談・フォローはこちら 💌</h2>
+    <h2>おしごとのご相談・フォローはこちら <span aria-hidden="true">💌</span></h2>
     <div class="socials">
-      <a class="social" href="#" aria-label="X">𝕏</a>
-      <a class="social" href="#" aria-label="GitHub">🐙</a>
-      <a class="social" href="#" aria-label="Mail">✉️</a>
+      <a class="social" href="#" aria-label="X"><span aria-hidden="true">𝕏</span></a>
+      <a class="social" href="#" aria-label="GitHub"><span aria-hidden="true">🐙</span></a>
+      <a class="social" href="#" aria-label="Mail"><span aria-hidden="true">✉️</span></a>
     </div>
     <p class="copyright">© 2026 My AI Portfolio — made with 🤖 & 💗</p>
   </footer>

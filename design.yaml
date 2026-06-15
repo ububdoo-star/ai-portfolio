@@ -1,0 +1,180 @@
+# =====================================================================
+# AI Portfolio — Design Spec
+# 現行サイト (https://ai-portfolio-amber-pi.vercel.app) の実装から抽出した
+# デザイン仕様。これ1枚で同テイストのポートフォリオを再現できる。
+# =====================================================================
+
+meta:
+  name: AI Portfolio
+  title: "ちいさなクリエイターの、つくる毎日。"
+  description: "AIで作ったアプリ・ツールの実績をまとめた個人開発ポートフォリオ。"
+  lang: ja
+  type: single-page          # 1ページ・スクロール構成
+  approach: mobile-first
+  stack: [HTML, CSS]          # フレームワークなし / 1ファイル完結
+  deploy:
+    github_pages: https://ububdoo-star.github.io/ai-portfolio/
+    vercel: https://ai-portfolio-amber-pi.vercel.app
+
+# ---------------------------------------------------------------------
+# テーマ / 世界観
+# ---------------------------------------------------------------------
+theme:
+  mood: ["kawaii", "pastel", "やわらかい", "ポップ", "クリーン"]
+  keywords: ["丸み", "ふんわり", "高明度", "余白を活かす", "親しみやすい"]
+
+# ---------------------------------------------------------------------
+# カラーパレット（実装の :root 変数）
+# ---------------------------------------------------------------------
+colors:
+  background: "#FFFDFB"      # オフホワイト地色
+  mint:       "#ABDBD8"      # メインパステル1
+  pink:       "#F6D7E8"      # メインパステル2 / 見出しハイライト
+  peach:      "#F2BD93"      # CTAボタン背景
+  accent:     "#B0591F"      # 暖色アクセント（リンク/数字などテキスト用・AA合格）
+  lilac:      "#c5c1ec"      # 補助
+  ink:        "#4A4A5C"      # 本文テキスト（純黒は使わない）
+  ink_soft:   "#6a6a78"      # サブテキスト（AA確保のため #7a7a88 から暗色化）
+  card:       "#ffffff"
+  notes: >
+    CTAボタンは peach 背景＋ ink 文字（白文字は不採用。ink×peach=約5.1:1でAA合格）。
+    リンク・数字など peach をテキストに使う箇所は accent(#B0591F) を使用しAAを確保。
+    純黒・原色は使わず、彩度を抑えたパステルで統一する。
+
+# ---------------------------------------------------------------------
+# タイポグラフィ（Google Fonts）
+# ---------------------------------------------------------------------
+typography:
+  fonts:
+    heading: "Zen Maru Gothic"       # 見出し（丸ゴシック）
+    body:    "M PLUS Rounded 1c"     # 本文（丸ゴシック）
+    accent:  "Quicksand"             # 英字・数字・サブラベル
+  rules:
+    line_height: 1.8
+    heading_line_height: 1.4
+    heading_highlight: "キーワードに pink の蛍光ペン風グラデ下線を引く"
+    eng_sublabel: "セクション英語サブ見出しは大文字・字間広め(letter-spacing .12em)"
+
+# ---------------------------------------------------------------------
+# 形状・装飾トークン
+# ---------------------------------------------------------------------
+tokens:
+  radius: 22px               # カード等の角丸（大きめ統一）
+  pill_radius: 999px         # バッジ・ボタン・タグ
+  shadow_soft: "0 6px 18px rgba(246,215,232,.35)"
+  shadow_card: "0 8px 24px rgba(171,219,216,.20)"
+  hover_lift: "translateY(-3px〜-6px)"   # ホバーでふわっと浮かす
+  animation:
+    float: "ゆっくり上下に揺れる (5s ease-in-out infinite)"
+    rise:  "ロード時に下からフェードイン(スタガー)"
+    reduced_motion: "prefers-reduced-motion で全アニメ無効化"
+
+# ---------------------------------------------------------------------
+# レイアウト
+# ---------------------------------------------------------------------
+layout:
+  max_width: 1040px
+  section_padding: "64px 0"
+  background_decoration:
+    image: images/bg.jpg
+    usage: "position:fixed の全面装飾。opacity .5 + 中央を白く抜くradialグラデで可読性確保"
+  breakpoints:
+    tablet: 768px            # ヒーローを縦積みに
+    mobile: 600px            # フォント縮小・固定CTA表示
+
+# ---------------------------------------------------------------------
+# セクション構成（上から順番）
+# ---------------------------------------------------------------------
+sections:
+  - id: hero
+    layout: "2カラム（左:イラスト / 右:テキスト）→ 768px以下で縦積み"
+    elements:
+      - badge: "🎨 AI開発ポートフォリオ"
+      - headline: "ちいさなクリエイターの、\nつくる毎日。"
+      - lead: "AIと一緒に、アプリやツールを N 個つくりました。"
+      - cta_primary: { label: "作品を見る →", target: "#gallery", style: peach-pill }
+      - cta_ghost:   { label: "わたしについて", target: "#about" }
+    image:
+      src: images/hero.jpg
+      treatment: "ラッパーdiv(aspect-ratio 5/4, overflow hidden) + img object-fit:cover, object-position:38% 45%"
+  - id: about
+    layout: "中央のふきだし型カード(.about-bubble)"
+    content: "自己紹介（AIと一緒にものづくり）"
+  - id: gallery
+    layout: "カードグリッド(auto-fill minmax 280px) PC2〜3列 / SP1列"
+    card:
+      thumb: "スクショ画像 or グラデプレースホルダー(16:10)"
+      fields: [タイトル, 1行説明, 技術タグ, "詳細リンク"]
+    count: 6
+  - id: skills
+    layout: "pill型タグを中央寄せで並べる"
+    items: ["Claude Code", "Python", "JavaScript", "HTML / CSS", "GAS", "Chrome拡張", "画像生成AI"]
+  - id: contact
+    layout: "フッター（SNSアイコン円形 + コピーライト）"
+    socials: [X, GitHub, Mail]
+
+# ---------------------------------------------------------------------
+# コンポーネント定義
+# ---------------------------------------------------------------------
+components:
+  cta_button:
+    bg: peach
+    text: ink            # AA確保のため白ではなく ink(#4A4A5C)
+    radius: pill
+    shadow: "0 8px 18px rgba(242,189,147,.45)"
+    hover: "translateY(-3px) + 影強調"
+  badge:
+    bg: white
+    text: ink_soft
+    radius: pill
+    shadow: shadow_soft
+  card:
+    bg: white
+    radius: 22px
+    shadow: shadow_card
+    hover: "translateY(-6px) + 影強調"
+  tag:
+    bg: "#f4f4f8"
+    text: ink_soft
+    radius: pill
+  mobile_sticky_cta: "600px以下で画面下に固定表示(blur背景)"
+
+# ---------------------------------------------------------------------
+# 画像生成（ヒーロー / 背景）
+# ---------------------------------------------------------------------
+image_generation:
+  provider: fal.ai
+  model: openai/gpt-image-2
+  auth: "Authorization: Key <FAL_KEY>  (.env に隔離・コミット禁止)"
+  resolution: "ネイティブ最大 1536×1024 → 2560幅へアップスケールし JPEG化(2K)"
+  output: "白背景のフラットkawaiiベクター。webは jpeg(品質78〜82) で軽量化"
+  hero_prompt: >
+    Modern Japanese web portfolio hero section, clean and minimalist landing page header.
+    Japanese "Kawaii" vector illustration style, flat design with thin and clean black outlines.
+    Simple and rounded chibi characters representing a creator/designer.
+    High-quality 2D digital art, professional vector finish.
+    Wide-angle composition with ample negative space on the right side for text overlay.
+    Central or side-aligned focus, balanced and airy layout.
+    No complex diagrams, no charts, no explanatory text.
+    Bright pastel colors with a soft white or very light grey background.
+    Soft gradients, cheerful and pop atmosphere, high-key lighting.
+    Floating decorative icons related to creativity (a cute pen, a floating laptop, a tiny camera),
+    scattered sparkles and soft rounded stars. Hand-drawn aesthetic but polished. High-end modern web UI aesthetic.
+  background_prompt: >
+    Same kawaii pastel vector style as the hero, but a decorative wallpaper with NO characters,
+    a large empty airy center for content overlay, and creativity icons (pen, laptop, camera, palette)
+    plus sparkles scattered gently around the edges and corners. Seamless light background.
+
+# ---------------------------------------------------------------------
+# アクセシビリティ / 品質メモ（今後の改善余地）
+# ---------------------------------------------------------------------
+quality_notes:
+  done:
+    - "全画像 alt 記述 / loading 属性"
+    - "OGPはラスター画像(1200×630) + 絶対URL"
+    - "APIキーは .env を gitignore/vercelignore で除外"
+    - "CTA/リンクのコントラストを AA 化（ink文字 + accent #B0591F、ink_soft暗色化）"
+    - "装飾絵文字を aria-hidden 化 / 英語サブ見出しに lang=en"
+  todo:
+    - "ギャラリーの実スクショ・各リンク(href=#)URL差し替え（差し替え時に .thumb プレースホルダー文字のコントラストも解消）"
+    - "未使用CSS変数(--lilac/--pink)をリテラル直書きから var() 参照へ統一"
