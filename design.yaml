@@ -175,6 +175,6 @@ quality_notes:
     - "APIキーは .env を gitignore/vercelignore で除外"
     - "CTA/リンクのコントラストを AA 化（ink文字 + accent #B0591F、ink_soft暗色化）"
     - "装飾絵文字を aria-hidden 化 / 英語サブ見出しに lang=en"
+    - "ギャラリーサムネ(.t1〜.t4)の色をリテラルから var() 参照へ統一（--mint/--pink/--peach/--lilac）"
   todo:
     - "ギャラリーの実スクショ・各リンク(href=#)URL差し替え（差し替え時に .thumb プレースホルダー文字のコントラストも解消）"
-    - "未使用CSS変数(--lilac/--pink)をリテラル直書きから var() 参照へ統一"
